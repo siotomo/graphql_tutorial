@@ -1,0 +1,16 @@
+type Query {
+  girl: Girl
+  girls: [Girl]
+  store: Store
+}
+type Mutation {
+  addGirl(name: String!, age: Int): Girl
+}
+type Girl {
+  name: String
+  age: Int
+}
+type Store {
+  name: String!
+  girls: [Girl]
+}

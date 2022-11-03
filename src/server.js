@@ -1,24 +1,6 @@
 const { ApolloServer, gql } = require("apollo-server");
-
-// GraphQLのスキーマ定義
-const typeDefs = gql`
-  type Query {
-    girl: Girl
-    girls: [Girl]
-    store: Store
-  }
-  type Mutation {
-    addGirl(name: String!, age: Int): Girl
-  }
-  type Girl {
-    name: String
-    age: Int
-  }
-  type Store {
-    name: String!
-    girls: [Girl]
-  }
-`
+const fs = require('fs');
+const path = require('path');
 
 // 実際の処理を行う部分
 const resolvers = {
@@ -37,7 +19,6 @@ const resolvers = {
     }
   }
 }
-
 // データがないのでハードコーディング
 const girls = [
   {
@@ -53,15 +34,12 @@ const girls = [
     age: '28'
   },
 ]
-
 const store = {
   name: 'ギャラクシー',
   girls: girls.slice(0,2)
 }
-
 const server = new ApolloServer({
-  typeDefs,
+  typeDefs: fs.readFileSync(path.join(__dirname, "schema.graphql"), "utf-8"),
   resolvers,
 })
-
 server.listen().then(({url}) => console.log(`${url}でGraphQLサーバー起動中`));
