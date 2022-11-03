@@ -1,0 +1,9 @@
+{
+  "name": "GraphQL",
+  "version": "1.0.0",
+  "description": "udemy_graphql",
+  "main": "server.js",
+  "repository": "git@github.com:siotomo/graphql_tutorial.git",
+  "author": "shiomi <shiomi@glomouth.co.jp>",
+  "license": "MIT"
+}
