@@ -1,16 +1,17 @@
 type Query {
   girl: Girl
   girls: [Girl]
-  store: Store
+  stores: [Store]
 }
 type Mutation {
-  addGirl(name: String!, age: Int): Girl
-}
-type Girl {
-  name: String
-  age: Int
+  addGirl(name: String!, age: Int, storeId: Int): Girl
 }
 type Store {
   name: String!
   girls: [Girl]
+}
+type Girl {
+  name: String
+  age: Int
+  storeId: Int
 }

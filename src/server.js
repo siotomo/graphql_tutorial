@@ -3,31 +3,20 @@ const fs = require('fs');
 const path = require('path');
 
 const { PrismaClient } = require("@prisma/client");
+const { addGirl } = require("./resolvers/Mutation");
+const { girl, girls, stores } = require("./resolvers/Query");
 
 const prisma = new PrismaClient();
 
 // 実際の処理を行う部分
 const resolvers = {
-  Query: {
-    girl: () => girls[0],
-    girls: async(parent, args, context) => {
-      const girls = await context.prisma.girl.findMany()
-      console.log(girls);
-      return girls;
-    },
-    store: () => store,
+  Query:{
+    girl: girl,
+    girls: girls,
+    stores: stores
   },
   Mutation: {
-    addGirl: async (parent, args, context) => {
-      const newGirl =
-        context.prisma.girl.create({
-          data: {
-            name: args.name,
-            age: args.age
-          }
-        });
-      return newGirl;
-    }
+    addGirl: addGirl
   }
 }
 const server = new ApolloServer({
