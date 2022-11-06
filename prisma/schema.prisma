@@ -13,6 +13,7 @@ datasource db {
 model Store {
   id Int @id @default(autoincrement())
   name String
+  password String
   girls Girl[]
 }
 

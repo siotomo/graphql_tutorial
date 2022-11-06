@@ -5,7 +5,7 @@ type Query {
 }
 type Mutation {
   addGirl(name: String!, age: Int, storeId: Int): Girl
-  openStore(name: String!, password: String): Store
+  openStore(name: String!, password: String!): Store
 }
 type Store {
   name: String!

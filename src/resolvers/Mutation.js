@@ -12,12 +12,16 @@ async function addGirl(_, args, context){
   return newGirl;
 }
 async function openStore(_, args, context){
-  const password = bcrypt.hash(password, 10);
+  const password = await bcrypt.hash(args.password, 10);
 
   const newStore = context.prisma.store.create({
-    ...args,
-    password
+    data: {
+      ...args,
+      password
+    }
   })
+
+  return newStore;
 }
 
 module.exports = {
