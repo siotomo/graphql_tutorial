@@ -24,7 +24,20 @@ async function openStore(_, args, context){
   return newStore;
 }
 
+async function signIn(_, args, context){
+  const hased_password = await bcrypt.hash(args.password, 10);
+  console.log(hased_password);
+  const store = await context.prisma.store.findFirst({
+    where: {
+      // name: "ウルトラギャラクシー"
+      password: hased_password
+    }
+  })
+  return store;
+}
+
 module.exports = {
   addGirl,
-  openStore
+  openStore,
+  signIn
 }

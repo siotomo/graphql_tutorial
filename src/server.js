@@ -3,11 +3,10 @@ const fs = require('fs');
 const path = require('path');
 
 const { PrismaClient } = require("@prisma/client");
-const { addGirl, openStore } = require("./resolvers/Mutation");
+const { addGirl, openStore, signIn } = require("./resolvers/Mutation");
 const { girl, girls, stores } = require("./resolvers/Query");
 
 const prisma = new PrismaClient();
-
 // 実際の処理を行う部分
 const resolvers = {
   Query:{
@@ -17,7 +16,8 @@ const resolvers = {
   },
   Mutation: {
     addGirl: addGirl,
-    openStore: openStore
+    openStore: openStore,
+    signIn: signIn
   }
 }
 const server = new ApolloServer({
