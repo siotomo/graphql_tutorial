@@ -5,8 +5,8 @@ type Query {
 }
 type Mutation {
   addGirl(name: String!, age: Int, storeId: Int): Girl
-  openStore(name: String!, password: String!): Store
-  signIn(password: String!): Store
+  openStore(name: String!, password: String!): AuthPayload
+  signIn(name: String!, password: String!): AuthPayload
 }
 type Store {
   name: String!
@@ -17,4 +17,8 @@ type Girl {
   name: String
   age: Int
   storeId: Int
+}
+type AuthPayload {
+  token: String
+  store: Store
 }
